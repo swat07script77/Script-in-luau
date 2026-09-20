@@ -1,0 +1,23 @@
+MainNewTab:CreateButton("Reset", function()
+    local char = player.Character
+    local humanoid = char and char:FindFirstChildWhichIsA("Humanoid")
+    
+    local success = false
+    -- Método 1: ReplicateSignal (se disponível)
+    pcall(function()
+        if replicatesignal then
+            replicatesignal(player.Kill)
+            success = true
+        end
+    end)
+    -- Método 2: Humanoid:ChangeState + Health
+    if not success and humanoid then
+        humanoid:ChangeState(Enum.HumanoidStateType.Dead)
+        humanoid.Health = 0
+        success = true
+    end
+    -- Método 3: BreakJoints
+    if not success and char then
+        char:BreakJoints()
+    end
+end)
