@@ -4,7 +4,7 @@ MainNewTab:CreateButton("Reset", function()
     
     local success = false
     -- Método 1: ReplicateSignal (se disponível)
-    pcall(function()
+    pcall(function()dddddd
         if replicatesignal then
             replicatesignal(player.Kill)
             success = true
